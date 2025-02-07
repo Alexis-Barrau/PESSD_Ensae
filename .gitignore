@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Renviron
-/renv.lock
-renv/library/
+renv
 
 LYCEES_base.dta
