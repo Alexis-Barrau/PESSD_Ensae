@@ -1,3 +1,5 @@
+library(haven)
+library(tidyverse)
 
 
 base <- read_dta("LYCEES_base.dta")
