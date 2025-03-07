@@ -1,0 +1,53 @@
+---
+title: "Stats_desc_politique"
+format: html
+editor: visual
+---
+
+```{r}
+library(haven)
+library(tidyverse)
+library(summarytools)
+```
+
+```{r}
+base <- read_dta("LYCEES_base.dta")
+
+# Transformation des variables labellisées en facteurs si nécessaire
+base <- base %>% mutate_if(is.labelled, as_factor)
+```
+
+```{r}
+ggplot(base, aes(x = as.factor(q27a))) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Opinion politique du répondant", x = "Réponse", y = "Fréquence") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(base, aes(x = as.factor(q27b))) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Opinion politique du père", x = "Réponse", y = "Fréquence") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(base, aes(x = as.factor(q27c))) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Opinion politique de la mère", x = "Réponse", y = "Fréquence") +
+  theme_minimal()
+```
+
+```{r}
+df_proportions <- base %>%
+  select(q27a, q27b, q27c) %>%  
+  pivot_longer(everything(), names_to = "Question", values_to = "Réponse") %>%
+  group_by(Question, Réponse) %>%
+  summarise(Proportion = n() / nrow(df) * 100, .groups = "drop") %>%
+  pivot_wider(names_from = Réponse, values_from = Proportion)
+```
+
+```{r}
+print(dfSummary(base,graph.magnif=0.75,col.widths=c("5%","10%","5%","5%","5%","5%", "5%", "5%")),max.tbl.height=600, method='render')
+
+```
