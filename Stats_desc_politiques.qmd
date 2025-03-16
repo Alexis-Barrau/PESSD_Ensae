@@ -17,37 +17,50 @@ base <- read_dta("LYCEES_base.dta")
 base <- base %>% mutate_if(is.labelled, as_factor)
 ```
 
+On regarde un peu les opinions politiques professées
+
 ```{r}
 ggplot(base, aes(x = as.factor(q27a))) +
   geom_bar(fill = "blue", color = "black") +
   labs(title = "Opinion politique du répondant", x = "Réponse", y = "Fréquence") +
   theme_minimal()
-```
 
-```{r}
+round(prop.table(table(base$q27a, useNA = "ifany")) * 100, 1)
+
 ggplot(base, aes(x = as.factor(q27b))) +
   geom_bar(fill = "blue", color = "black") +
   labs(title = "Opinion politique du père", x = "Réponse", y = "Fréquence") +
   theme_minimal()
-```
 
-```{r}
+round(prop.table(table(base$q27b, useNA = "ifany")) * 100, 1)
+
 ggplot(base, aes(x = as.factor(q27c))) +
   geom_bar(fill = "blue", color = "black") +
   labs(title = "Opinion politique de la mère", x = "Réponse", y = "Fréquence") +
   theme_minimal()
+
+round(prop.table(table(base$q27b, useNA = "ifany")) * 100, 1)
 ```
+
+Cela semble quand même pas mal décallé vers la gauche, ce qui est étrange... Bon, prédominance aussi des NA.
+
+On essaie de voir ce que cela donne avec de la pondération.
 
 ```{r}
-df_proportions <- base %>%
-  select(q27a, q27b, q27c) %>%  
-  pivot_longer(everything(), names_to = "Question", values_to = "Réponse") %>%
-  group_by(Question, Réponse) %>%
-  summarise(Proportion = n() / nrow(df) * 100, .groups = "drop") %>%
-  pivot_wider(names_from = Réponse, values_from = Proportion)
+ggplot(base, aes(x = as.factor(q27a), weight = pond)) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Opinion politique du répondant (avec pondération)", x = "Réponse", y = "Fréquence") +
+  theme_minimal()
+
+ggplot(base, aes(x = as.factor(q27b), weight = pond)) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Opinion politique du père (avec pondération)", x = "Réponse", y = "Fréquence") +
+  theme_minimal()
+
+ggplot(base, aes(x = as.factor(q27c), weight = pond)) +
+  geom_bar(fill = "blue", color = "black") +
+  labs(title = "Opinion politique de la mère (avec pondération)", x = "Réponse", y = "Fréquence") +
+  theme_minimal()
 ```
 
-```{r}
-print(dfSummary(base,graph.magnif=0.75,col.widths=c("5%","10%","5%","5%","5%","5%", "5%", "5%")),max.tbl.height=600, method='render')
-
-```
+De fait, on retrouve un peu la même chose, il ne semble pas que cela change fondamentalement le problème.
