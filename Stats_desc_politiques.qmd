@@ -7,7 +7,6 @@ editor: visual
 ```{r}
 library(haven)
 library(tidyverse)
-library(summarytools)
 ```
 
 ```{r}
@@ -43,11 +42,11 @@ df_proportions <- base %>%
   select(q27a, q27b, q27c) %>%  
   pivot_longer(everything(), names_to = "Question", values_to = "Réponse") %>%
   group_by(Question, Réponse) %>%
-  summarise(Proportion = n() / nrow(df) * 100, .groups = "drop") %>%
-  pivot_wider(names_from = Réponse, values_from = Proportion)
+  summarise(count = n() , .groups = "drop") %>%
+  ungroup() %>%
+  group_by(Question) %>%
+  mutate(proportion=round(count/sum(count),4)*100)
 ```
 
-```{r}
-print(dfSummary(base,graph.magnif=0.75,col.widths=c("5%","10%","5%","5%","5%","5%", "5%", "5%")),max.tbl.height=600, method='render')
-
+```{}
 ```
