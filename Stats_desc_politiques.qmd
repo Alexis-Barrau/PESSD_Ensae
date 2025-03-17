@@ -187,6 +187,7 @@ Accord_affirmations_q31 <- base %>%
             accord_ET=sd(Accord, na.rm=TRUE)) %>%
   mutate(question=labels_list_accord_Q31)
 
+
 ggplot(Accord_affirmations_q31) +
   geom_point(aes(x=question, y=accord_moyen)) +
   geom_errorbar(aes(x=question, ymin = accord_moyen - accord_ET, ymax = accord_moyen + accord_ET), width = 0.2) +
@@ -215,8 +216,5 @@ ggplot(data = proportions_enjeux, aes(x=fct_reorder(Enjeux, Prévalence, .desc=T
   geom_col() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
   labs(x="Enjeux", y="Prévalence (%)")
-```
-```{r}
-table()
 ```
 
