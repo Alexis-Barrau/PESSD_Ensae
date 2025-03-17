@@ -158,3 +158,65 @@ ggplot(data = proportions_qualificatifs, aes(x=fct_reorder(Qualificatif, Préval
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
   labs(x="Qualificatif", y="Prévalence (%)")
 ```
+
+```{r}
+modalites <- c(
+  "Pas du tout d'accord" = 1,
+  "Pas d'accord" = 2,
+  "Ni d'accord, ni pas d'accord" = 3,
+  "D'accord" = 4,
+  "Tout à fait d'accord" = 5
+)
+
+labels_list_accord_Q31 <- c(
+  "L’État devrait faire plus pour lutter contre les inégalités de revenu",
+  "Les chômeurs qui ne sont pas en recherche active d’emploi devraient perdre leur allocation",
+  "L’immigration est une source d’enrichissement culturel",
+  "L'Etat devrait contrôler et réglementer plus étroitement les entreprises",
+  "Quand la femme a un emploi à plein temps, la vie de famille en souffre",
+  "Il faudrait supprimer la loi autorisant le
+mariage homosexuel"
+)
+
+Accord_affirmations_q31 <- base %>%
+  select(q31a, q31b, q31c, q31d, q31e, q31f) %>%
+  mutate(across(everything(), ~ modalites[.])) %>%
+  pivot_longer(cols = everything(), names_to = "Variable", values_to = "Accord") %>%
+  group_by(Variable) %>%
+  summarise(accord_moyen=mean(Accord, na.rm=TRUE),
+            accord_ET=sd(Accord, na.rm=TRUE)) %>%
+  mutate(question=labels_list_accord_Q31)
+
+ggplot(Accord_affirmations_q31) +
+  geom_point(aes(x=question, y=accord_moyen)) +
+  geom_errorbar(aes(x=question, ymin = accord_moyen - accord_ET, ymax = accord_moyen + accord_ET), width = 0.2) +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 14)) +
+  theme(axis.text.x = element_text(angle = 0, vjust = 0.5))
+```
+
+```{r}
+proportions_enjeux <- base %>%
+  select(starts_with("q32")) %>%
+  select(-q32m_com)
+labels_list <- sapply(proportions_enjeux, function(x) attr(x, "label"))
+labels_last_word <- sub(".*\\s+", "", labels_list)
+proportions_enjeux=proportions_enjeux %>%
+  mutate(across(everything(), as.character)) %>%
+  summarise(across(everything(), ~ round(sum(. == "Oui", na.rm=TRUE)/n(), 4)*100))
+colnames(proportions_enjeux)=labels_last_word
+
+proportions_enjeux=proportions_enjeux %>%
+  pivot_longer(cols=colnames(.),
+               names_to = "Enjeux",
+               values_to = "Prévalence") %>%
+  arrange(desc(Prévalence))
+
+ggplot(data = proportions_enjeux, aes(x=fct_reorder(Enjeux, Prévalence, .desc=TRUE), y=Prévalence)) +
+  geom_col() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5)) +
+  labs(x="Enjeux", y="Prévalence (%)")
+```
+```{r}
+table()
+```
+
