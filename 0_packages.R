@@ -1,0 +1,8 @@
+library(haven)
+library(tidyverse)
+library(ggthemes)
+library(wesanderson)
+library(stringr)
+library(psych)
+library(FactoMineR)
+library(factoextra)
