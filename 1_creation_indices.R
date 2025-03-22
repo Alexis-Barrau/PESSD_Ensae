@@ -2,7 +2,7 @@
 ### On procède via des analyses factorielles (ACP)
 
 ## Question 10 accord avec des affirmations relatives à la lutte écologique
-# Les sous-questions q10g et q10h n'ont pas été posé dans l'un des établissements, donc on les exclu
+# Les sous-questions q10g et q10h n'ont pas été posées dans l'un des établissements, donc on les exclut
 
 #On regarde les NA aux sous-questions
 sum(is.na(base$q10a))
@@ -175,6 +175,8 @@ baseNA <- base %>% subset(rowSums(is.na(base[, c("f1_q10", "f1_q22", "f1_q26", "
 table(baseNA$ville)
 
 # Donc on a quand même près d'un quart de l'échantillon qu'on perd...
+# =>  Si je ne me trompe pas, c'est 1079 individus qui ont au moins un NA sur les 4 questions étudiées, mais qui peuvent
+# avoir répondu aux autres
 
 # Nettoyage de la mémoire
 
