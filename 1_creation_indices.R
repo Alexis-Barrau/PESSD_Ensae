@@ -184,3 +184,23 @@ rm(base_q10, base_q22, base_q26, base_q31, baseNA, pca_result, q10NA, q22NA, q26
 gc()
 
 
+#Tentative de projeter q10 et q22 ensemble, ainsi que q26 et q31
+id_q10_q22=intersect(base_q10$id, base_q22$id)
+base_q10q22=base %>%
+  filter(id %in% id_q10_q22)
+
+KMO(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g))
+bartlett.test(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g))
+pca_result <- PCA(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g), scale.unit = TRUE, graph = TRUE)
+fviz_eig(pca_result)
+
+
+
+id_q26_q31=intersect(base_q26$id, base_q31$id)
+base_q26q31=base %>%
+  filter(id %in% id_q26_q31)
+
+KMO(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
+bartlett.test(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
+pca_result <- PCA(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f), scale.unit = TRUE, graph = TRUE)
+fviz_eig(pca_result)
