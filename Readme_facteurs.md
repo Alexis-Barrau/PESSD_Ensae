@@ -24,13 +24,13 @@ Sur le résultat, l'axe 1 est clairement un indicateur de volonté (déclarative
 
 # Facteur q26
 
-Facteur sur le sentiment de compétence politique et l'intérêt. 
+Facteur sur le sentiment de compétence politique et l'intérêt.
 
 Peu de NA ici, on exclut 145 observations. Par ailleurs, on a 2/3 de la variance sur notre axe principal, donc c'est énorme ici.
 
 # Facteur q31
 
-Ici il s'agit de trouver un positionnement politique --> Peu probable d'avoir vraiment un axe...
+Ici il s'agit de trouver un positionnement politique --\> Peu probable d'avoir vraiment un axe...
 
 De fait, le test KMO indique qu'on devrait plutôt renoncer, ou au moins virer la b... Mais Barlett a l'air d'accord.
 
@@ -38,4 +38,10 @@ Donc c'est pas mal le bordel cette histoire. EN gros, l'axe 1, avec comme princi
 
 # Maintenant ?
 
-Il reste donc à regarder un peu plus ces facteurs : pertinence, croisement avec d'autres variables, projections dans le plan de certaines variables. Pour q31 notamment il doit être possible de projeter q30, et peut-être q27, pour interpréter 
+Il reste donc à regarder un peu plus ces facteurs : pertinence, croisement avec d'autres variables, projections dans le plan de certaines variables. Pour q31 notamment il doit être possible de projeter q30, et peut-être q27, pour interpréter
+
+# Ajout de q27a (orientation politique déclarée)
+
+Si on rajoute l'orientation politique déclarée sur l'ACP des questions 10 et 22 (questions du module sur les convictions écologiques), on ne trouve pas (ou presque) de contribution de q27a aux axes principaux (en revanche, une forte contribution au 3ème axe). Les convictions écologiques telles que décrites par les questions 10 et 22 et l'orientation politique telle que décrite par la question 27a sont donc décorrélées, sinon orthogonales.
+
+Pour l'ACP des question 26 et 31, l'orientation politique de 27a contribue bien aux axes, avec notamment les NSP constituant un groupe à part (logique car ce sont peut-être des élèves moins politisés, donc moins radicaux sur les autres questions, et plus irréguliers), et les élèves de droite étant d'accord pour retirer l'allocation chômage aux chômeurs n'étant pas en recherche active. Les ACP sont selon KMO et bartlett encore pertinentes, même si fatalement la variance expliquée par les axes principaux chute...

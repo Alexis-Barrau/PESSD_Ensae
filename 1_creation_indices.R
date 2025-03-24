@@ -204,3 +204,27 @@ KMO(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q3
 bartlett.test(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
 pca_result <- PCA(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f), scale.unit = TRUE, graph = TRUE)
 fviz_eig(pca_result)
+
+
+
+#Ajout de l'orientation politique déclarée (q27a)
+
+#Création de nouvelles variables pour séparer gauche-droite, ni gauche-ni droite et NSP
+base_q10q22_q27a=base_q10q22 %>%
+  filter(is.na(q27a)==FALSE) %>%                        #240 NA
+  mutate(G_D=case_when(q27a %in% c(1,2,3,4,5) ~ q27a,
+                       TRUE ~ mean(base$q27a[base$q27a %in% 1:5])), #Pour les individus ayant répondu 6 ou 7, on impute par la moyenne du sous groupe 1-5
+         niG_niD=case_when(q27a==6 ~ 1,
+                           TRUE ~ 0),
+         NSP_GD=case_when(q27a==7 ~1,
+                          TRUE ~ 0))
+
+#Ajout de ces nouvelles variables dans les ACP
+base_q26q31_q27a=base_q26q31 %>%
+  filter(is.na(q27a)==FALSE) %>%                        #221 NA
+  mutate(G_D=case_when(q27a %in% c(1,2,3,4,5) ~ q27a,
+                       TRUE ~ mean(base$q27a[base$q27a %in% 1:5])), #Pour les individus ayant répondu 6 ou 7, on impute par la moyenne du sous groupe 1-5
+         niG_niD=case_when(q27a==6 ~ 1,
+                           TRUE ~ 0),
+         NSP_GD=case_when(q27a==7 ~1,
+                          TRUE ~ 0))
