@@ -180,8 +180,8 @@ table(baseNA$ville)
 
 # Nettoyage de la mémoire
 
-rm(base_q10, base_q22, base_q26, base_q31, baseNA, pca_result, q10NA, q22NA, q26NA, q31NA)
-gc()
+#rm(base_q10, base_q22, base_q26, base_q31, baseNA, pca_result, q10NA, q22NA, q26NA, q31NA)
+#gc()
 
 
 #Tentative de projeter q10 et q22 ensemble, ainsi que q26 et q31
