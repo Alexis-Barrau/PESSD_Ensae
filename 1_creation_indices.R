@@ -180,66 +180,66 @@ table(baseNA$ville)
 
 # Nettoyage de la mémoire
 
-#rm(base_q10, base_q22, base_q26, base_q31, baseNA, pca_result, q10NA, q22NA, q26NA, q31NA)
-#gc()
+rm(base_q10, base_q22, base_q26, base_q31, baseNA, pca_result, q10NA, q22NA, q26NA, q31NA)
+gc()
 
 
-#Tentative de projeter q10 et q22 ensemble, ainsi que q26 et q31
-id_q10_q22=intersect(base_q10$id, base_q22$id)
-base_q10q22=base %>%
-  filter(id %in% id_q10_q22)
-
-KMO(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g))
-bartlett.test(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g))
-pca_result <- PCA(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g), scale.unit = TRUE, graph = TRUE)
-fviz_eig(pca_result)
-
-
-
-id_q26_q31=intersect(base_q26$id, base_q31$id)
-base_q26q31=base %>%
-  filter(id %in% id_q26_q31)
-
-KMO(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
-bartlett.test(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
-pca_result <- PCA(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f), scale.unit = TRUE, graph = TRUE)
-fviz_eig(pca_result)
-
-
-
-#Ajout de l'orientation politique déclarée (q27a)
-
-#Création de nouvelles variables pour séparer gauche-droite, ni gauche-ni droite et NSP
-base_q10q22_q27a=base_q10q22 %>%
-  filter(is.na(q27a)==FALSE) %>%                        #240 NA
-  mutate(G_D=case_when(q27a %in% c(1,2,3,4,5) ~ q27a,
-                       TRUE ~ mean(base$q27a[base$q27a %in% 1:5])), #Pour les individus ayant répondu 6 ou 7, on impute par la moyenne du sous groupe 1-5
-         niG_niD=case_when(q27a==6 ~ 1,
-                           TRUE ~ 0),
-         NSP_GD=case_when(q27a==7 ~1,
-                          TRUE ~ 0))
-
-base_q26q31_q27a=base_q26q31 %>%
-  filter(is.na(q27a)==FALSE) %>%                        #221 NA
-  mutate(G_D=case_when(q27a %in% c(1,2,3,4,5) ~ q27a,
-                       TRUE ~ mean(base$q27a[base$q27a %in% 1:5])), #Pour les individus ayant répondu 6 ou 7, on impute par la moyenne du sous groupe 1-5
-         niG_niD=case_when(q27a==6 ~ 1,
-                           TRUE ~ 0),
-         NSP_GD=case_when(q27a==7 ~1,
-                          TRUE ~ 0))
-
-#Ajout de ces nouvelles variables dans les ACP
-KMO(select(base_q10q22_q27a, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g, G_D, niG_niD, NSP_GD))
-bartlett.test(select(base_q10q22_q27a, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g, G_D, niG_niD, NSP_GD))
-pca_result <- PCA(select(base_q10q22_q27a, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g, G_D, niG_niD, NSP_GD), scale.unit = TRUE, graph = FALSE)
-var_colors <- ifelse(rownames(pca_result$var$coord) %in% c("G_D", "niG_niD", "NSP_GD"), "red", "blue")
-fviz_pca_var(pca_result, col.var = var_colors)
-fviz_eig(pca_result)
-
-
-KMO(select(base_q26q31_q27a, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f, G_D, niG_niD, NSP_GD))
-bartlett.test(select(base_q26q31_q27a, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f, G_D, niG_niD, NSP_GD))
-pca_result <- PCA(select(base_q26q31_q27a, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f, G_D, niG_niD, NSP_GD), scale.unit = TRUE, graph = FALSE)
-var_colors <- ifelse(rownames(pca_result$var$coord) %in% c("G_D", "niG_niD", "NSP_GD"), "red", "blue")
-fviz_pca_var(pca_result, col.var = var_colors)
-fviz_eig(pca_result)
+# #Tentative de projeter q10 et q22 ensemble, ainsi que q26 et q31
+# id_q10_q22=intersect(base_q10$id, base_q22$id)
+# base_q10q22=base %>%
+#   filter(id %in% id_q10_q22)
+# 
+# KMO(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g))
+# bartlett.test(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g))
+# pca_result <- PCA(select(base_q10q22, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g), scale.unit = TRUE, graph = TRUE)
+# fviz_eig(pca_result)
+# 
+# 
+# 
+# id_q26_q31=intersect(base_q26$id, base_q31$id)
+# base_q26q31=base %>%
+#   filter(id %in% id_q26_q31)
+# 
+# KMO(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
+# bartlett.test(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f))
+# pca_result <- PCA(select(base_q26q31, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f), scale.unit = TRUE, graph = TRUE)
+# fviz_eig(pca_result)
+# 
+# 
+# 
+# #Ajout de l'orientation politique déclarée (q27a)
+# 
+# #Création de nouvelles variables pour séparer gauche-droite, ni gauche-ni droite et NSP
+# base_q10q22_q27a=base_q10q22 %>%
+#   filter(is.na(q27a)==FALSE) %>%                        #240 NA
+#   mutate(G_D=case_when(q27a %in% c(1,2,3,4,5) ~ q27a,
+#                        TRUE ~ mean(base$q27a[base$q27a %in% 1:5])), #Pour les individus ayant répondu 6 ou 7, on impute par la moyenne du sous groupe 1-5
+#          niG_niD=case_when(q27a==6 ~ 1,
+#                            TRUE ~ 0),
+#          NSP_GD=case_when(q27a==7 ~1,
+#                           TRUE ~ 0))
+# 
+# base_q26q31_q27a=base_q26q31 %>%
+#   filter(is.na(q27a)==FALSE) %>%                        #221 NA
+#   mutate(G_D=case_when(q27a %in% c(1,2,3,4,5) ~ q27a,
+#                        TRUE ~ mean(base$q27a[base$q27a %in% 1:5])), #Pour les individus ayant répondu 6 ou 7, on impute par la moyenne du sous groupe 1-5
+#          niG_niD=case_when(q27a==6 ~ 1,
+#                            TRUE ~ 0),
+#          NSP_GD=case_when(q27a==7 ~1,
+#                           TRUE ~ 0))
+# 
+# #Ajout de ces nouvelles variables dans les ACP
+# KMO(select(base_q10q22_q27a, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g, G_D, niG_niD, NSP_GD))
+# bartlett.test(select(base_q10q22_q27a, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g, G_D, niG_niD, NSP_GD))
+# pca_result <- PCA(select(base_q10q22_q27a, q10a, q10b, q10c, q10d, q10e, q10f, q22a, q22b, q22c, q22d, q22e, q22f, q22g, G_D, niG_niD, NSP_GD), scale.unit = TRUE, graph = FALSE)
+# var_colors <- ifelse(rownames(pca_result$var$coord) %in% c("G_D", "niG_niD", "NSP_GD"), "red", "blue")
+# fviz_pca_var(pca_result, col.var = var_colors)
+# fviz_eig(pca_result)
+# 
+# 
+# KMO(select(base_q26q31_q27a, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f, G_D, niG_niD, NSP_GD))
+# bartlett.test(select(base_q26q31_q27a, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f, G_D, niG_niD, NSP_GD))
+# pca_result <- PCA(select(base_q26q31_q27a, q26a, q26b, q26c, q26d, q26e, q31a, q31b, q31c, q31d, q31e, q31f, G_D, niG_niD, NSP_GD), scale.unit = TRUE, graph = FALSE)
+# var_colors <- ifelse(rownames(pca_result$var$coord) %in% c("G_D", "niG_niD", "NSP_GD"), "red", "blue")
+# fviz_pca_var(pca_result, col.var = var_colors)
+# fviz_eig(pca_result)
