@@ -4,4 +4,4 @@
 .Renviron
 renv
 
-LYCEES_base.dta
+*.dta
