@@ -5,7 +5,7 @@
 #               1.1 sensibilité environnementales : 
 #               1.2 passage à l'action :
 #               1.3 compétence politique : 
-#               1.4 gauchisme : 
+#               1.4 Identité politique : 
 #               1.5 renoncement pour des raisons écologiques
 #               A chaque fois, on vérifie le caractère unidimensionnel de 
 #               l'indice avant de lancer une ACP (avec imputation des 
@@ -110,7 +110,11 @@ rm(df_long)
 
 
 # 1.2 PASSAGE A L'ACTION -------------------------------------------------------
-passage_action = c("q22a", "q22b", "q22c", "q22d", "q22e", "q22f", "q22g")
+passage_action = c("q22a", "q22b", "q22c", "q22d", "q22e")
+
+# Recodage pour renverser les valeurs
+base <- base %>%
+  mutate(across(all_of(passage_action), ~ 5 - .))
 
 # Valeurs manquantes
 base %>% 
@@ -145,7 +149,7 @@ KMO(base[, passage_action]) # Avec une valeur de 0.7, l'utilisation d'une analys
 bartlett.test(base[, passage_action]) #On vérifie avec un test de Barlett
 
 # ACP
-pca_passage_action = PCA(base[, c(passage_action,"q11")], scale.unit = TRUE, graph = TRUE, quanti.sup=8:8)
+pca_passage_action = PCA(base[, c(passage_action,"q11")], scale.unit = TRUE, graph = TRUE, quanti.sup=6:6)
 ggsave("Figures/1.2c_passage_action_pca_cercle.png")
 fviz_eig(pca_passage_action)
 ggsave("Figures/1.2d_passage_action_pca_scree_plot.png")
@@ -274,11 +278,26 @@ pca_ident_pol = PCA(base[, c(ident_pol,"Progressiste",  "Conservateur",  "Antira
 # Issu on améliore la visualisation du cercle des correlations en ajoutant des variables supplementaire pr mieux interpreter
 mod_qualisup <- as.data.frame(pca_ident_pol$quali.sup$coord)
 mod_qualisup$label <- rownames(mod_qualisup)
+mod_qualisup <- mod_qualisup %>%
+                mutate(label = case_when(
+                  label == "q27a.1" ~ "Très\nà gauche",
+                  label == "q27a.2" ~ "A gauche",
+                  label == "q27a.3" ~ "Au centre",
+                  label == "q27a.4" ~ "A droite",
+                  label == "q27a.5" ~ "Très\nà droite",
+                  label == "q27a.6" ~ "Ni gauche, ni droite",
+                  label == "q27a.7" ~ "Je ne sais pas",
+                  TRUE ~ label
+                )) %>%
+                filter(!str_ends(label, "1")) %>%
+                mutate(label = str_remove(label, "\\.2$"))
+
 p <- fviz_pca_var(pca_ident_pol, col.var = "black", repel = TRUE)
 p + 
-  geom_point(data = mod_qualisup, aes(x = Dim.1, y = Dim.2), color = "red") +
-  geom_text(data = mod_qualisup, aes(x = Dim.1, y = Dim.2, label = label),
-            color = "red", vjust = -0.5)
+  geom_point(data = mod_qualisup[grepl("^q27a", rownames(mod_qualisup)), ], aes(x = Dim.1, y = Dim.2), color = "#560bad") +
+  geom_text_repel(data  = mod_qualisup[grepl("^q27a", rownames(mod_qualisup)), ], aes(x = Dim.1, y = Dim.2, label = label), color = "#560bad", vjust = -0.5) +
+  geom_point(data = mod_qualisup[!grepl("^q27a", rownames(mod_qualisup)),], aes(x = Dim.1, y = Dim.2), color = "#f72585") +
+  geom_text_repel(data  = mod_qualisup[!grepl("^q27a", rownames(mod_qualisup)),], aes(x = Dim.1, y = Dim.2, label = label), color = "#f72585", vjust = -0.5)
 ggsave("Figures/1.4c_ident_pol_pca_cercle.png")
 fviz_eig(pca_ident_pol)
 ggsave("Figures/1.4d_ident_pol_pca_scree_plot.png")
@@ -364,4 +383,13 @@ ggplot(df_long, aes(x = as.factor(modalite), y = renonc_ecolo)) +
   theme_minimal()
 ggsave("Figures/1.5e_renonc_ecolo_distrib_indice.png")
 rm(df_long)
+
+
+
+
+# 1.6 NORMALISATION DES INDICES ------------------------------------------------
+vars_to_normalize <- c("sensib_env", "renonc_ecolo", "passage_action", "comp_polit", "ident_pol")
+
+base <- base %>%
+  mutate(across(all_of(vars_to_normalize), ~ scale(.)[, 1], .names = "{.col}_z"))
 write_dta(base, "LYCEES_base_aug.dta")
