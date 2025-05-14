@@ -3,5 +3,5 @@
 .RData
 .Renviron
 renv
-*.png
+
 *.dta
