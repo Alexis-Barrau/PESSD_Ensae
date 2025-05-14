@@ -12,5 +12,9 @@ base <- read_dta("LYCEES_base.dta")
 #création des variables de facteurs
 source("1b_creation_indices.R")
 
-# Transformation des variables labellisées en facteurs si nécessaire
-base <- base %>% mutate_if(is.labelled, as_factor)
+#cStatistiques descriptives sur les indicateurs
+source("2_stats_desc.R")
+
+#Réalisation des régressions
+source("3_regression.R")
+

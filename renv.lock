@@ -1061,49 +1061,6 @@
       "Repository": "CRAN",
       "Encoding": "UTF-8"
     },
-    "checkmate": {
-      "Package": "checkmate",
-      "Version": "2.3.2",
-      "Source": "Repository",
-      "Type": "Package",
-      "Title": "Fast and Versatile Argument Checks",
-      "Description": "Tests and assertions to perform frequent argument checks. A substantial part of the package was written in C to minimize any worries about execution time overhead.",
-      "Authors@R": "c( person(\"Michel\", \"Lang\", NULL, \"michellang@gmail.com\", role = c(\"cre\", \"aut\"), comment = c(ORCID = \"0000-0001-9754-0393\")), person(\"Bernd\", \"Bischl\", NULL, \"bernd_bischl@gmx.net\", role = \"ctb\"), person(\"Dénes\", \"Tóth\", NULL, \"toth.denes@kogentum.hu\", role = \"ctb\", comment = c(ORCID = \"0000-0003-4262-3217\")) )",
-      "URL": "https://mllg.github.io/checkmate/, https://github.com/mllg/checkmate",
-      "URLNote": "https://github.com/mllg/checkmate",
-      "BugReports": "https://github.com/mllg/checkmate/issues",
-      "NeedsCompilation": "yes",
-      "ByteCompile": "yes",
-      "Encoding": "UTF-8",
-      "Depends": [
-        "R (>= 3.0.0)"
-      ],
-      "Imports": [
-        "backports (>= 1.1.0)",
-        "utils"
-      ],
-      "Suggests": [
-        "R6",
-        "fastmatch",
-        "data.table (>= 1.9.8)",
-        "devtools",
-        "ggplot2",
-        "knitr",
-        "magrittr",
-        "microbenchmark",
-        "rmarkdown",
-        "testthat (>= 3.0.4)",
-        "tinytest (>= 1.1.0)",
-        "tibble"
-      ],
-      "License": "BSD_3_clause + file LICENSE",
-      "VignetteBuilder": "knitr",
-      "RoxygenNote": "7.3.2",
-      "Collate": "'AssertCollection.R' 'allMissing.R' 'anyInfinite.R' 'anyMissing.R' 'anyNaN.R' 'asInteger.R' 'assert.R' 'helper.R' 'makeExpectation.R' 'makeTest.R' 'makeAssertion.R' 'checkAccess.R' 'checkArray.R' 'checkAtomic.R' 'checkAtomicVector.R' 'checkCharacter.R' 'checkChoice.R' 'checkClass.R' 'checkComplex.R' 'checkCount.R' 'checkDataFrame.R' 'checkDataTable.R' 'checkDate.R' 'checkDirectoryExists.R' 'checkDisjunct.R' 'checkDouble.R' 'checkEnvironment.R' 'checkFALSE.R' 'checkFactor.R' 'checkFileExists.R' 'checkFlag.R' 'checkFormula.R' 'checkFunction.R' 'checkInt.R' 'checkInteger.R' 'checkIntegerish.R' 'checkList.R' 'checkLogical.R' 'checkMatrix.R' 'checkMultiClass.R' 'checkNamed.R' 'checkNames.R' 'checkNull.R' 'checkNumber.R' 'checkNumeric.R' 'checkOS.R' 'checkPOSIXct.R' 'checkPathForOutput.R' 'checkPermutation.R' 'checkR6.R' 'checkRaw.R' 'checkScalar.R' 'checkScalarNA.R' 'checkSetEqual.R' 'checkString.R' 'checkSubset.R' 'checkTRUE.R' 'checkTibble.R' 'checkVector.R' 'coalesce.R' 'isIntegerish.R' 'matchArg.R' 'qassert.R' 'qassertr.R' 'vname.R' 'wfwl.R' 'zzz.R'",
-      "Author": "Michel Lang [cre, aut] (<https://orcid.org/0000-0001-9754-0393>), Bernd Bischl [ctb], Dénes Tóth [ctb] (<https://orcid.org/0000-0003-4262-3217>)",
-      "Maintainer": "Michel Lang <michellang@gmail.com>",
-      "Repository": "CRAN"
-    },
     "cli": {
       "Package": "cli",
       "Version": "3.6.3",
@@ -3749,44 +3706,6 @@
       "Maintainer": "Ben Bolker <bbolker+lme4@gmail.com>",
       "Repository": "CRAN"
     },
-    "lobstr": {
-      "Package": "lobstr",
-      "Version": "1.1.2",
-      "Source": "Repository",
-      "Title": "Visualize R Data Structures with Trees",
-      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", role = c(\"aut\", \"cre\")), person(\"RStudio\", role = \"cph\") )",
-      "Description": "A set of tools for inspecting and understanding R data structures inspired by str(). Includes ast() for visualizing abstract syntax trees, ref() for showing shared references, cst() for showing call stack trees, and obj_size() for computing object sizes.",
-      "License": "MIT + file LICENSE",
-      "URL": "https://lobstr.r-lib.org/, https://github.com/r-lib/lobstr",
-      "BugReports": "https://github.com/r-lib/lobstr/issues",
-      "Depends": [
-        "R (>= 3.2)"
-      ],
-      "Imports": [
-        "crayon",
-        "methods",
-        "prettyunits",
-        "rlang (>= 1.0.0)"
-      ],
-      "Suggests": [
-        "covr",
-        "pillar",
-        "pkgdown",
-        "testthat (>= 3.0.0)"
-      ],
-      "LinkingTo": [
-        "cpp11 (>= 0.4.2)"
-      ],
-      "Config/Needs/website": "tidyverse/tidytemplate",
-      "Config/testthat/edition": "3",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.2.0",
-      "SystemRequirements": "C++11",
-      "NeedsCompilation": "yes",
-      "Author": "Hadley Wickham [aut, cre], RStudio [cph]",
-      "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
-      "Repository": "CRAN"
-    },
     "lubridate": {
       "Package": "lubridate",
       "Version": "1.9.4",
@@ -3833,51 +3752,6 @@
       "Author": "Vitalie Spinu [aut, cre], Garrett Grolemund [aut], Hadley Wickham [aut], Davis Vaughan [ctb], Ian Lyttle [ctb], Imanuel Costigan [ctb], Jason Law [ctb], Doug Mitarotonda [ctb], Joseph Larmarange [ctb], Jonathan Boiser [ctb], Chel Hee Lee [ctb]",
       "Repository": "CRAN"
     },
-    "magick": {
-      "Package": "magick",
-      "Version": "2.8.5",
-      "Source": "Repository",
-      "Type": "Package",
-      "Title": "Advanced Graphics and Image-Processing in R",
-      "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroenooms@gmail.com\", comment = c(ORCID = \"0000-0002-4035-0289\"))",
-      "Description": "Bindings to 'ImageMagick': the most comprehensive open-source image processing library available. Supports many common formats (png, jpeg, tiff, pdf, etc) and manipulations (rotate, scale, crop, trim, flip, blur, etc). All operations are vectorized via the Magick++ STL meaning they operate either on a single frame or a series of frames for working with layers, collages, or animation. In RStudio images are automatically previewed when printed to the console, resulting in an interactive editing environment. The latest  version of the package includes a native graphics device for creating  in-memory graphics or drawing onto images using pixel coordinates.",
-      "License": "MIT + file LICENSE",
-      "URL": "https://docs.ropensci.org/magick/ https://ropensci.r-universe.dev/magick",
-      "BugReports": "https://github.com/ropensci/magick/issues",
-      "SystemRequirements": "ImageMagick++: ImageMagick-c++-devel (rpm) or libmagick++-dev (deb)",
-      "VignetteBuilder": "knitr",
-      "Imports": [
-        "Rcpp (>= 0.12.12)",
-        "magrittr",
-        "curl"
-      ],
-      "LinkingTo": [
-        "Rcpp"
-      ],
-      "Suggests": [
-        "av (>= 0.3)",
-        "spelling",
-        "jsonlite",
-        "methods",
-        "knitr",
-        "rmarkdown",
-        "rsvg",
-        "webp",
-        "pdftools",
-        "ggplot2",
-        "gapminder",
-        "IRdisplay",
-        "tesseract (>= 2.0)",
-        "gifski"
-      ],
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.2",
-      "Language": "en-US",
-      "NeedsCompilation": "yes",
-      "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
-      "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
-      "Repository": "CRAN"
-    },
     "magrittr": {
       "Package": "magrittr",
       "Version": "2.0.3",
@@ -3908,39 +3782,6 @@
       "Author": "Stefan Milton Bache [aut, cph] (Original author and creator of magrittr), Hadley Wickham [aut], Lionel Henry [cre], RStudio [cph, fnd]",
       "Maintainer": "Lionel Henry <lionel@rstudio.com>",
       "Repository": "CRAN"
-    },
-    "matrixStats": {
-      "Package": "matrixStats",
-      "Version": "1.5.0",
-      "Source": "Repository",
-      "Depends": [
-        "R (>= 3.4.0)"
-      ],
-      "Suggests": [
-        "utils",
-        "base64enc",
-        "ggplot2",
-        "knitr",
-        "markdown",
-        "microbenchmark",
-        "R.devices",
-        "R.rsp"
-      ],
-      "VignetteBuilder": "R.rsp",
-      "Title": "Functions that Apply to Rows and Columns of Matrices (and to Vectors)",
-      "Authors@R": "c( person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email=\"henrikb@braju.com\"), person(\"Constantin\", \"Ahlmann-Eltze\", role = \"ctb\"), person(\"Hector\", \"Corrada Bravo\", role=\"ctb\"), person(\"Robert\", \"Gentleman\", role=\"ctb\"), person(\"Jan\", \"Gleixner\", role=\"ctb\"), person(\"Peter\", \"Hickey\", role=\"ctb\"), person(\"Ola\", \"Hossjer\", role=\"ctb\"), person(\"Harris\", \"Jaffee\", role=\"ctb\"), person(\"Dongcan\", \"Jiang\", role=\"ctb\"), person(\"Peter\", \"Langfelder\", role=\"ctb\"), person(\"Brian\", \"Montgomery\", role=\"ctb\"), person(\"Angelina\", \"Panagopoulou\", role=\"ctb\"), person(\"Hugh\", \"Parsonage\", role=\"ctb\"), person(\"Jakob Peder\", \"Pettersen\", role=\"ctb\"))",
-      "Author": "Henrik Bengtsson [aut, cre, cph], Constantin Ahlmann-Eltze [ctb], Hector Corrada Bravo [ctb], Robert Gentleman [ctb], Jan Gleixner [ctb], Peter Hickey [ctb], Ola Hossjer [ctb], Harris Jaffee [ctb], Dongcan Jiang [ctb], Peter Langfelder [ctb], Brian Montgomery [ctb], Angelina Panagopoulou [ctb], Hugh Parsonage [ctb], Jakob Peder Pettersen [ctb]",
-      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
-      "Description": "High-performing functions operating on rows and columns of matrices, e.g. col / rowMedians(), col / rowRanks(), and col / rowSds().  Functions optimized per data type and for subsetted calculations such that both memory usage and processing time is minimized.  There are also optimized vector-based methods, e.g. binMeans(), madDiff() and weightedMedian().",
-      "License": "Artistic-2.0",
-      "LazyLoad": "TRUE",
-      "NeedsCompilation": "yes",
-      "ByteCompile": "TRUE",
-      "URL": "https://github.com/HenrikBengtsson/matrixStats",
-      "BugReports": "https://github.com/HenrikBengtsson/matrixStats/issues",
-      "RoxygenNote": "7.3.2",
-      "Repository": "CRAN",
-      "Encoding": "UTF-8"
     },
     "memoise": {
       "Package": "memoise",
@@ -4553,69 +4394,6 @@
       ],
       "Encoding": "UTF-8"
     },
-    "pander": {
-      "Package": "pander",
-      "Version": "0.6.6",
-      "Source": "Repository",
-      "Authors@R": "c( person(\"Gergely\", \"Daróczi\", , \"daroczig@rapporter.net\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0003-3149-8537\")), person(\"Roman\", \"Tsegelskyi\", , \"roman.tsegelskyi@gmail.com\", role = c(\"aut\")))",
-      "Title": "An R 'Pandoc' Writer",
-      "Type": "Package",
-      "Encoding": "UTF-8",
-      "Description": "Contains some functions catching all messages, 'stdout' and other useful information while evaluating R code and other helpers to return user specified text elements (like: header, paragraph, table, image, lists etc.) in 'pandoc' markdown or several type of R objects similarly automatically transformed to markdown format. Also capable of exporting/converting (the resulting) complex 'pandoc' documents to e.g. HTML, 'PDF', 'docx' or 'odt'. This latter reporting feature is supported in brew syntax or with a custom reference class with a smarty caching 'backend'.",
-      "Date": "2025-03-01",
-      "URL": "https://rapporter.github.io/pander/",
-      "BugReports": "https://github.com/rapporter/pander/issues",
-      "License": "AGPL-3 | file LICENSE",
-      "Depends": [
-        "R (>= 2.15.0)"
-      ],
-      "Imports": [
-        "grDevices",
-        "graphics",
-        "methods",
-        "utils",
-        "stats",
-        "digest",
-        "tools",
-        "Rcpp"
-      ],
-      "Suggests": [
-        "grid",
-        "lattice",
-        "ggplot2 (>= 0.9.2)",
-        "sylly",
-        "sylly.en",
-        "logger",
-        "survival",
-        "microbenchmark",
-        "zoo",
-        "nlme",
-        "descr",
-        "MASS",
-        "knitr",
-        "rmarkdown",
-        "tables",
-        "reshape",
-        "memisc",
-        "Epi",
-        "randomForest",
-        "tseries",
-        "gtable",
-        "rms",
-        "forecast",
-        "data.table"
-      ],
-      "SystemRequirements": "pandoc (https://johnmacfarlane.net/pandoc) for exporting markdown files to other formats.",
-      "LinkingTo": [
-        "Rcpp"
-      ],
-      "VignetteBuilder": "knitr",
-      "RoxygenNote": "7.3.2",
-      "NeedsCompilation": "yes",
-      "Author": "Gergely Daróczi [aut, cre] (<https://orcid.org/0000-0003-3149-8537>), Roman Tsegelskyi [aut]",
-      "Maintainer": "Gergely Daróczi <daroczig@rapporter.net>",
-      "Repository": "CRAN"
-    },
     "patchwork": {
       "Package": "patchwork",
       "Version": "1.3.0",
@@ -4978,39 +4756,6 @@
       "Maintainer": "Joe Cheng <joe@posit.co>",
       "Repository": "CRAN"
     },
-    "pryr": {
-      "Package": "pryr",
-      "Version": "0.1.6",
-      "Source": "Repository",
-      "Title": "Tools for Computing on the Language",
-      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@rstudio.com\", role = c(\"aut\", \"cre\")), person(\"R Core team\", role = \"ctb\", comment = \"Some code extracted from base R\") )",
-      "Description": "Useful tools to pry back the covers of R and understand the language at a deeper level.",
-      "License": "GPL-2",
-      "URL": "https://github.com/hadley/pryr",
-      "BugReports": "https://github.com/hadley/pryr/issues",
-      "Depends": [
-        "R (>= 3.1.0)"
-      ],
-      "Imports": [
-        "codetools",
-        "lobstr",
-        "methods",
-        "Rcpp (>= 0.11.0)",
-        "stringr"
-      ],
-      "Suggests": [
-        "testthat (>= 0.8.0)"
-      ],
-      "LinkingTo": [
-        "Rcpp"
-      ],
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.2.3",
-      "NeedsCompilation": "yes",
-      "Author": "Hadley Wickham [aut, cre], R Core team [ctb] (Some code extracted from base R)",
-      "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
-      "Repository": "CRAN"
-    },
     "ps": {
       "Package": "ps",
       "Version": "1.8.1",
@@ -5237,30 +4982,6 @@
       "NeedsCompilation": "yes",
       "Author": "Hadley Wickham [trl, cre, cph], RStudio [cph], Sridhar Ratnakumar [aut], Trent Mick [aut], ActiveState [cph] (R/appdir.r, R/cache.r, R/data.r, R/log.r translated from appdirs), Eddy Petrisor [ctb], Trevor Davis [trl, aut], Gabor Csardi [ctb], Gregory Jefferis [ctb]",
       "Maintainer": "Hadley Wickham <hadley@rstudio.com>",
-      "Repository": "CRAN"
-    },
-    "rapportools": {
-      "Package": "rapportools",
-      "Version": "1.2",
-      "Source": "Repository",
-      "Authors@R": "c( person(\"Gergely\", \"Daróczi\", , \"daroczig@rapporter.net\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0003-3149-8537\")), person(\"Aleksandar\", \"Blagotić\", , \"alex@rapporter.net\", role = c(\"aut\")))",
-      "Title": "Miscellaneous (Stats) Helper Functions with Sane Defaults for Reporting",
-      "Type": "Package",
-      "Encoding": "UTF-8",
-      "Description": "Helper functions that act as wrappers to more advanced statistical methods with the advantage of having sane defaults for quick reporting.",
-      "Date": "2025-03-01",
-      "BugReports": "https://github.com/rapporter/rapportools/issues",
-      "License": "AGPL-3",
-      "Imports": [
-        "plyr",
-        "pander",
-        "reshape2",
-        "MASS"
-      ],
-      "RoxygenNote": "7.3.2",
-      "NeedsCompilation": "no",
-      "Author": "Gergely Daróczi [aut, cre] (<https://orcid.org/0000-0003-3149-8537>), Aleksandar Blagotić [aut]",
-      "Maintainer": "Gergely Daróczi <daroczig@rapporter.net>",
       "Repository": "CRAN"
     },
     "rbibutils": {
@@ -6132,60 +5853,6 @@
       "NeedsCompilation": "no",
       "Author": "Hadley Wickham [aut, cre, cph], Posit Software, PBC [cph, fnd]",
       "Maintainer": "Hadley Wickham <hadley@posit.co>",
-      "Repository": "CRAN"
-    },
-    "summarytools": {
-      "Package": "summarytools",
-      "Version": "1.1.1",
-      "Source": "Repository",
-      "Type": "Package",
-      "Title": "Tools to Quickly and Neatly Summarize Data",
-      "Authors@R": "person(\"Dominic\", \"Comtois\", email = \"dominic.comtois@gmail.com\",  role = c(\"aut\", \"cre\"))",
-      "Author": "Dominic Comtois [aut, cre]",
-      "Maintainer": "Dominic Comtois <dominic.comtois@gmail.com>",
-      "Language": "en-US",
-      "Description": "Data frame summaries, cross-tabulations, weight-enabled frequency tables and common descriptive (univariate) statistics in concise tables available in a variety of formats (plain ASCII, Markdown and HTML). A good  point-of-entry for exploring data, both for experienced and new R users.",
-      "Imports": [
-        "base64enc",
-        "checkmate",
-        "dplyr",
-        "grDevices",
-        "htmltools",
-        "lubridate",
-        "magick",
-        "matrixStats",
-        "methods",
-        "pander",
-        "pryr",
-        "rapportools",
-        "stats",
-        "tcltk",
-        "tibble",
-        "tidyr",
-        "utils"
-      ],
-      "Suggests": [
-        "forcats",
-        "formatR",
-        "haven",
-        "kableExtra",
-        "knitr",
-        "magrittr",
-        "rmarkdown",
-        "rstudioapi",
-        "backports"
-      ],
-      "Depends": [
-        "R (>= 3.5)"
-      ],
-      "VignetteBuilder": "knitr",
-      "LazyData": "true",
-      "License": "GPL-2",
-      "URL": "https://github.com/dcomtois/summarytools",
-      "BugReports": "https://github.com/dcomtois/summarytools/issues",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.2",
-      "NeedsCompilation": "no",
       "Repository": "CRAN"
     },
     "survival": {

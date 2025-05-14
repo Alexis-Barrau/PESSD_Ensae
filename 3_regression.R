@@ -1,3 +1,18 @@
+########################################################################
+# Titre         3 regression
+# Description   Ce script vise à réaliser les régressions de nos variables
+#               d'intérêt sur nos indicateurs ainsi qu'un ensemble de contrôle.
+#               On procède aussi à quelques prétraitements :
+#               - La création d'une indicatrice pour les lycéens issues de
+#               catégories populaires à partir de la PCS ménage
+#               (issue de la profession déclarée des parents)
+#               - La création d'une indicatrice pour les lycéens dont au moins 
+#               un des parents est titulaire d'un diplôme du supérieur
+#               - L'exclusion des individus ne déclarant pas de genre binaire
+#               (en raison d'un effectif trop faible)
+########################################################################
+
+
 # Création de la variable classe_pop
 base <- base %>%
   mutate(classe_pop = case_when(
@@ -23,12 +38,13 @@ base <- base[base$genre != 3,]
 base <- base %>%
   mutate(across(c(genre, niveau, classe_pop, dipsup), as.factor))
 model_sensib <- lm(sensib_env ~ ident_pol * comp_polit + genre + niveau + classe_pop + dipsup, data = base)
-model_renonc <- lm(passage_action ~ ident_pol * comp_polit + genre + niveau + classe_pop + dipsup, data = base)
-model_action <- lm(renonc_ecolo ~ ident_pol * comp_polit + genre + niveau + classe_pop + dipsup, data = base)
+model_renonc <- lm(passage_action ~ sensib_env * comp_polit + genre + niveau + classe_pop + dipsup, data = base)
+model_action <- lm(renonc_ecolo ~ sensib_env * comp_polit + genre + niveau + classe_pop + dipsup, data = base)
 
 # Vecteur de labels dans le bon ordre et sans nom
 labels <- c(
-  "Identité politique",
+  "Position politique",
+  "Sensibilité écolo.",
   "Compétence perçue",
   "Homme",
   "2nde Pro.",
@@ -41,13 +57,14 @@ labels <- c(
   "CAP",
   "Classes populaires",
   "Parents dip. sup.long",
-  "Position x compétence"
+  "Pos. pol. x compétence",
+  "Sensib. eco. x compétence"
 )
 
 # Appel sans nommage (ordre implicite)
 stargazer(model_sensib, model_renonc, model_action,
           type = "latex",
-          title = "Effet de la compétence politique autoperçue et du positionnement droite-gauche sur l'engagement écologique",
+          title = "Effet de la compétence politique autoperçue et du positionnement gauche-droite sur l'engagement écologique",
           report = "vc*",
           covariate.labels = labels,
           out = "Figures/reg_sensib_ecolo.tex",
