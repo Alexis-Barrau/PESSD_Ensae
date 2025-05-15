@@ -10,7 +10,7 @@ source("0_packages.R")
 base <- read_dta("LYCEES_base.dta")
 
 #création des variables de facteurs
-source("1b_creation_indices.R")
+source("1_creation_indices.R")
 
 #cStatistiques descriptives sur les indicateurs
 source("2_stats_desc.R")

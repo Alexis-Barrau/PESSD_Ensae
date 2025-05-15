@@ -7,11 +7,12 @@ library(tidyverse)
 
 #Lecture de la base
 base <- read_dta("LYCEES_base.dta")
+base <- base %>% mutate_if(is.labelled, as_factor)
 
 #Sélection des variables
 var <- base %>%
   select(genre,
-         clust)
+         niveau)
 
 #Décompte des modalités
 resultats <- lapply(var, function(x) {
